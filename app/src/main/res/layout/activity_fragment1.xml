@@ -14,12 +14,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get Data"
+        android:text="@string/getDataButton"
         android:id="@+id/buttonGet" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/list" />
+        android:id="@+id/list"
+        android:layout_below="@+id/buttonGet" />
 
 </RelativeLayout>
