@@ -31,6 +31,7 @@ public class JSONParser {
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
 
+            //Get http response
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
@@ -48,7 +49,7 @@ public class JSONParser {
                 sb.append(line).append("\n");
             }
             is.close();
-            json = sb.toString();
+            json = sb.toString();//Convert result to string
 
         } catch (Exception e) {
             Log.e(TAG, "Error converting result " + e.toString());

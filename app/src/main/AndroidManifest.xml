@@ -31,22 +31,6 @@
             android:name=".SmartParking"
             android:label="@string/title_activity_smart_parking" >
         </activity>
-        <activity
-            android:name=".Fragment1"
-            android:label="@string/title_activity_fragment1" >
-        </activity>
-        <activity
-            android:name=".Fragment2"
-            android:label="@string/title_activity_fragment2" >
-        </activity>
-        <activity
-            android:name=".Fragment3"
-            android:label="@string/title_activity_fragment3" >
-        </activity>
-        <activity
-            android:name=".Fragment4"
-            android:label="@string/title_activity_fragment4" >
-        </activity>
     </application>
 
 </manifest>
