@@ -1,7 +1,7 @@
 package de.tg76.sp6;
 
 /*
- * Fragment1 - Displays live car park data on fragment 1
+ * Fragment1 - Displays live car park data on fragment 1 
  * Thorsten Graebner
  */
 
