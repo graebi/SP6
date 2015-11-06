@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText etName;
     private EditText etEmail;
     private EditText etUsername;
-    private Button bLogout;
     private UserLocalStore userLocalStore;
 
     @Override
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etEmail = (EditText) findViewById(R.id.etEmail);
         etUsername = (EditText) findViewById(R.id.etUsername);
 
-        bLogout = (Button)findViewById(R.id.bLogout);
+        Button bLogout = (Button) findViewById(R.id.bLogout);
 
         //Creating listener for button bLogout
         bLogout.setOnClickListener(this);

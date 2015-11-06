@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/*
+ * PagerAdapter - Develop an adapter which will plug the fragment screen into the activity - The adapter helps to place data onto the screen
+ * Thorsten Graebner
+ */
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;

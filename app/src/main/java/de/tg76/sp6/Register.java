@@ -19,7 +19,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     private EditText etEmail;
     private EditText etUsername;
     private EditText etPassword;
-    private Button bRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         etEmail = (EditText) findViewById(R.id.etEmail);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        bRegister = (Button)findViewById(R.id.bRegister);
+        Button bRegister = (Button) findViewById(R.id.bRegister);
 
         //Creating listener for button bRegister
         bRegister.setOnClickListener(this);

@@ -1,8 +1,7 @@
 package de.tg76.sp6;
 
-
 /*
- * Fragment1 - Displays live car park data on fragment 1
+ * Fragment1 - Displays live car park data on fragment 1 
  * Thorsten Graebner
  */
 
@@ -38,7 +37,7 @@ public class Fragment1 extends Fragment {
     TextView name;
     TextView spaces;
 
-    //Creating ArrayList of type HashMap
+    //Creating ArrayList of type HashMap to store key & value pair
     ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
     //URL to get JSON Array
@@ -51,7 +50,7 @@ public class Fragment1 extends Fragment {
     public static final String KEY_SPACES = "SPACE";
 
     //Creating JSONArray
-    JSONArray cities = null;
+    JSONArray capark = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,19 +116,19 @@ public class Fragment1 extends Fragment {
 
             pDialog.dismiss();
             try {
-                // Getting JSON Array from URL
-                cities = json.getJSONArray(Key_ARRAY);
+                // Json objects in array - object 0 = (CARPARK_ID:1, CARPARKNAME:Parnell, SPACE:184)
+                capark = json.getJSONArray(Key_ARRAY);
 
-                for (int i = 0; i < cities.length(); i++) {
+                for (int i = 0; i < capark.length(); i++) {
 
-                    JSONObject c = cities.getJSONObject(i);
+                    JSONObject c = capark.getJSONObject(i); //Extract Json object from array
 
-                    // Storing  JSON item in a Variable
+                    // Storing JSON item(value) in a String Variable
                     String id = c.getString(KEY_ID);
                     String name = c.getString(KEY_NAME);
                     String spaces = c.getString(KEY_SPACES);
 
-                    // Adding value HashMap key => value
+                    // Adding value HashMap key => value == CARPARKNAME => PARNELL
                     HashMap<String, String> map = new HashMap<>();
                     map.put(KEY_ID, id);
                     map.put(KEY_NAME, name);
@@ -147,7 +146,7 @@ public class Fragment1 extends Fragment {
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("name"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_SHORT).show();
                         }//onItemClick
 
                     });//setOnItemClickListener

@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">SP5</string>
-
+    <string name="app_name">SP6</string>
 
     <string name="action_settings" translatable="false">Settings</string>
     <string name="title_activity_login" translatable="false">Login</string>

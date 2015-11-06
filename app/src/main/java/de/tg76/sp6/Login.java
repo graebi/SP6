@@ -17,11 +17,8 @@ import android.widget.TextView;
 //original-- public class Login extends ActionBarActivity implements View.OnClickListener {
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
-    //Variable to hold value from activity_login.xml form
-    private Button bLogin;
     private EditText etUsername;
     private EditText etPassword;
-    private TextView tvRegisterLink;
 
     private UserLocalStore userLocalStore;
 
@@ -34,8 +31,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //Assign ID to variable from activity_login.xml form
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        bLogin = (Button)findViewById(R.id.bLogin);
-        tvRegisterLink = (TextView)findViewById(R.id.tvRegisterLink);
+        Button bLogin = (Button) findViewById(R.id.bLogin);
+        TextView tvRegisterLink = (TextView) findViewById(R.id.tvRegisterLink);
 
         //Creating listener
         bLogin.setOnClickListener(this);
