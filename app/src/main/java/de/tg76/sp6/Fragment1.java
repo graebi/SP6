@@ -38,7 +38,7 @@ public class Fragment1 extends Fragment {
     TextView spaces;
 
     //Creating ArrayList of type HashMap to store key & value pair
-    ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
+    ArrayList<HashMap<String, String>>oslist = new ArrayList<>();
 
     //URL to get JSON Array
     private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchTest.php";
@@ -146,6 +146,11 @@ public class Fragment1 extends Fragment {
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            int carParkID;
+                            carParkID = (int) id;
+
+
+
                             Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_SHORT).show();
                         }//onItemClick
 
