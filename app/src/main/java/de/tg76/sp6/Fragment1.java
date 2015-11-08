@@ -41,7 +41,7 @@ public class Fragment1 extends Fragment {
     ArrayList<HashMap<String, String>>oslist = new ArrayList<>();
 
     //URL to get JSON Array
-    private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchTest.php";
+    private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchCarPark.php";
 
     //JSON Node Names
     public static final String Key_ARRAY = "result";
@@ -148,7 +148,6 @@ public class Fragment1 extends Fragment {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             int carParkID;
                             carParkID = (int) id;
-
 
 
                             Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_SHORT).show();
