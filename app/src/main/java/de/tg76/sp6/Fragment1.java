@@ -6,6 +6,7 @@ package de.tg76.sp6;
  */
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,7 +38,7 @@ public class Fragment1 extends Fragment {
     TextView name;
     TextView spaces;
 
-    //Creating ArrayList of type HashMap to store key & value pair
+    // ArrayList of type HashMap to store key & value pair
     ArrayList<HashMap<String, String>>oslist = new ArrayList<>();
 
     //URL to get JSON Array
@@ -114,6 +115,7 @@ public class Fragment1 extends Fragment {
         @Override
         protected void onPostExecute(JSONObject json) {
 
+
             pDialog.dismiss();
             try {
                 // Json objects in array - object 0 = (CARPARK_ID:1, CARPARKNAME:Parnell, SPACE:184)
@@ -150,7 +152,42 @@ public class Fragment1 extends Fragment {
                             carParkID = (int) id;
 
 
+                            //Create new activity - no TABs are available
+                            Intent intent = new Intent(getActivity().getBaseContext(), TestActivity.class);
+                            intent.putExtra("id", 1);
+                            startActivity(intent);
+
+                            //  String val =(String) parent.getItemAtPosition(position);
+
+                           //ho getFragmentManager()
+
+/*
+                            // Create new fragment and transaction
+                            Fragment TestFragment = new Fragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                            // Replace whatever is in the fragment_container view with this fragment,
+                            // and add the transaction to the back stack
+                            transaction.replace(R.id.fragment_container, TestFragment);
+                            transaction.addToBackStack(null);
+
+                            // Commit the transaction
+                            transaction.commit();
+*/
+
+//new http://stackoverflow.com/questions/25302698/display-a-fragment-when-an-item-in-a-listview-is-clicked
+ /*                           FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            Fragment profileFragment = new TestFragment();//the fragment you want to show
+                            profileFragment.setArguments(bundle);
+                            fragmentTransaction
+                                    .replace(R.id.content_frame, profileFragment);//R.id.content_frame is the layout you want to replace
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+
+*/
                             Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_SHORT).show();
+
+
                         }//onItemClick
 
                     });//setOnItemClickListener

@@ -30,6 +30,10 @@
             android:name=".SmartParking"
             android:label="@string/title_activity_smart_parking" >
         </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" >
+        </activity>
     </application>
 
 </manifest>
