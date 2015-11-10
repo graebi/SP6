@@ -27,7 +27,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@SuppressWarnings("ALL")
 public class Fragment1 extends Fragment {
 
     //Variable declaration
@@ -41,7 +40,7 @@ public class Fragment1 extends Fragment {
     ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
     //URL to get JSON Array
-    private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchTest.php";
+    private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchCarPark.php";
 
     //JSON Node Names
     public static final String Key_ARRAY = "result";
@@ -66,7 +65,8 @@ public class Fragment1 extends Fragment {
         oslist = new ArrayList<>();
         new JSONParse().execute();
 
-        
+
+        //noinspection ConstantConditions  Method invocation 'getView().findViewById(R.id.buttonGet)' at line 69 may produce 'java.lang.NullPointerException'
         buttonGet = (Button)getView().findViewById(R.id.buttonGet);
         buttonGet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +90,7 @@ public class Fragment1 extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.id)' at line 92 may produce 'java.lang.NullPointerException'
             id = (TextView) getView().findViewById(R.id.id);
             name = (TextView) getView().findViewById(R.id.name);
             spaces = (TextView) getView().findViewById(R.id.spaces);
@@ -136,6 +137,7 @@ public class Fragment1 extends Fragment {
 
                     oslist.add(map);
 
+                    //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.list)' at line 138 may produce 'java.lang.NullPointerException'
                     list = (ListView) getView().findViewById(R.id.list);
 
                     ListAdapter adapter = new SimpleAdapter(getActivity(), oslist,
