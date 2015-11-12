@@ -3,7 +3,6 @@ package de.tg76.sp6;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ public class Fragment3 extends Fragment {
 
     GoogleMap mMap;
     private static final int ERROR_Dialog_REQUEST = 9001;
-    private FragmentActivity myContext;
+    //private FragmentActivity myContext; delete
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
