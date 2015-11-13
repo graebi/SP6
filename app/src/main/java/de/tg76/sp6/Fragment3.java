@@ -35,7 +35,7 @@ import java.util.List;
 
 public class Fragment3 extends Fragment {
 
-    //Coordinations for Dublin
+    //Co-ordinations for Dublin
     private static final double
             Dub_LAT = 53.346953,
             Dub_LNG = -6.264944;
@@ -44,6 +44,7 @@ public class Fragment3 extends Fragment {
 
     GoogleMap mMap;
     private static final int ERROR_Dialog_REQUEST = 9001;
+    private String desc;
     //private FragmentActivity myContext; delete
 
     // private LatLng defaultLatLng = new LatLng(39.233956, -77.484703);
@@ -57,15 +58,12 @@ public class Fragment3 extends Fragment {
         //Call function
         if(servicesOK()){
             return inflater.inflate(R.layout.activity_map, container, false);
-            // Starting locations retrieve task
-
 
         }else{
             return inflater.inflate(R.layout.activity_fragment3, container, false);
         }
 
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -78,9 +76,11 @@ public class Fragment3 extends Fragment {
 
             Log.d("Testing", "Checkpoint 2");
 
+            //Set icon my location
             mMap.setMyLocationEnabled(true);
 
             Log.d("Testing", "RetrieveTask called");
+            // Starting locations retrieve task
             new RetrieveTask().execute();
 
             Toast.makeText(getActivity(), "Ready to map!", Toast.LENGTH_SHORT).show();
@@ -131,10 +131,11 @@ public class Fragment3 extends Fragment {
 
 
     // Adding marker on GoogleMaps
-    private void addMarker(LatLng latlng) {
+    private void addMarker(LatLng latlng,String desc) {
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latlng);
-        markerOptions.title(latlng.latitude + "," + latlng.longitude);
+        //markerOptions.title(latlng.latitude + "," + latlng.longitude);
+        markerOptions.title(desc);
         mMap.addMarker(markerOptions);
     }
 
@@ -157,7 +158,6 @@ public class Fragment3 extends Fragment {
                 while( (line = reader.readLine()) != null){
                     sb.append(line);
                 }
-
                 reader.close();
                 iStream.close();
 
@@ -198,8 +198,9 @@ public class Fragment3 extends Fragment {
             Log.d("Testing", "last");
             for(int i=0; i<result.size();i++){
                 HashMap<String, String> marker = result.get(i);
+                desc = marker.get("Description");
                 LatLng latlng = new LatLng(Double.parseDouble(marker.get("Latitude")), Double.parseDouble(marker.get("Longitude")));
-                addMarker(latlng);
+                addMarker(latlng, desc);
             }
         }
     }
