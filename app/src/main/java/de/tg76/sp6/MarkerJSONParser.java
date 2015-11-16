@@ -73,7 +73,7 @@ public class MarkerJSONParser {
                 lng = jMarker.getString("Longitude");
             }
 
-            Log.d("Testing", "Extracting longitude, if available");
+            Log.d("Testing", "Extracting Description, if available");
             // Extracting longitude, if available
             if(!jMarker.isNull("Description")){
                 desc = jMarker.getString("Description");
