@@ -134,7 +134,6 @@ public class Fragment3 extends Fragment {
     private void addMarker(LatLng latlng,String desc) {
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latlng);
-        //markerOptions.title(latlng.latitude + "," + latlng.longitude);
         markerOptions.title(desc);
         mMap.addMarker(markerOptions);
     }

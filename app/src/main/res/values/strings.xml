@@ -10,4 +10,5 @@
     <string name="title_activity_fragment3" translatable="false">Fragment3</string>
     <string name="title_activity_fragment4" translatable="false">Fragment4</string>
     <string name="getDataButton">Get Data</string>
+    <string name="btn_get_location">location</string>
 </resources>
