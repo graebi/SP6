@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,12 @@ public class Fragment1 extends Fragment {
     }
 
     @Override
+    public void onDetach() {
+        Log.d("Testing", "onDetach function");//delete this
+        super.onDetach();
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -75,6 +82,7 @@ public class Fragment1 extends Fragment {
             }
         });
     }
+
 
     //Inner Class
     private class JSONParse extends AsyncTask<String, String, JSONObject> {
@@ -95,6 +103,7 @@ public class Fragment1 extends Fragment {
             name = (TextView) getView().findViewById(R.id.name);
             spaces = (TextView) getView().findViewById(R.id.spaces);
 
+            //original place
             pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Getting Data ...");
             pDialog.setIndeterminate(false);

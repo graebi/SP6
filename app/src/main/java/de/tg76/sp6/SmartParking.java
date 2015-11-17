@@ -20,8 +20,8 @@ public class SmartParking extends AppCompatActivity {
 
         //Create the tabLayout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("CarPark"));
-        tabLayout.addTab(tabLayout.newTab().setText("CarFinder"));
+        tabLayout.addTab(tabLayout.newTab().setText("C-Park"));
+        tabLayout.addTab(tabLayout.newTab().setText("C-Finder"));
         tabLayout.addTab(tabLayout.newTab().setText("MAP"));
         tabLayout.addTab(tabLayout.newTab().setText("Favorite"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
