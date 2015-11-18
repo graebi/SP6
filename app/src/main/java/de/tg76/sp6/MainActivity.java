@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             //By click on button logout
             case R.id.bLogout:
-                userLocalStore.clearUserData();
-                userLocalStore.setUserLoggedIn(false);
+               // userLocalStore.clearUserData();
+                //userLocalStore.setUserLoggedIn(false);
 
                 //Original - changed 19/10
                 //startActivity(new Intent(this,Login.class));
