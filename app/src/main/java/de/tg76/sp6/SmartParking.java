@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+
 public class SmartParking extends AppCompatActivity {
+    private UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,4 +64,5 @@ public class SmartParking extends AppCompatActivity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
     }
+
 }

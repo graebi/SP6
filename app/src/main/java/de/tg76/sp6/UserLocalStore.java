@@ -22,6 +22,7 @@ class UserLocalStore {
     //Function to update SharedPreference user data
     public void storeUserData(User user){
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
+        spEditor.putInt("customer_id", user.customer_id);
         spEditor.putString("name",user.name);
         spEditor.putString("email",user.email);
         spEditor.putString("username",user.username);
@@ -31,13 +32,14 @@ class UserLocalStore {
 
     //Function retrieving attributes of user which is stored on the local database
     public  User getLoggedInUser(){
+        int customer_id = userLocalDatabase.getInt("customer_id", -1);
         String name = userLocalDatabase. getString("name", "");
         String email = userLocalDatabase.getString("email", "");
         String username = userLocalDatabase.getString("username", "");
         String password = userLocalDatabase.getString("password","");
 
         //Creating new user and return
-        return new User(name, email,username,password );
+        return new User(customer_id,name, email,username,password );
     }
 
     //Function to set loggedIn if user is logged on to the mobile

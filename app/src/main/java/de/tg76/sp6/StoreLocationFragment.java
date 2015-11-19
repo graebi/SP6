@@ -37,7 +37,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
 //-----------------------------------
   //  private EditText etName;
   //  private EditText etEmail;
-    private EditText etUsername;
+    private EditText etUsername, etUserID;
     private UserLocalStore userLocalStore;
 
 
@@ -82,6 +82,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
        // etName = (EditText) getActivity().findViewById(R.id.etName);
        // etEmail = (EditText) getActivity().findViewById(R.id.etEmail);
         etUsername = (EditText) getActivity().findViewById(R.id.etUsername);
+        etUserID = (EditText) getActivity().findViewById(R.id.etUserID);
 
 
 
@@ -204,6 +205,9 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
         User user = userLocalStore.getLoggedInUser();
 
         etUsername.setText(user.username);
+        etUserID.setText(user.customer_id +"");
+
+
     //    etName.setText(user.name);
      //   etEmail.setText(user.email);
     }

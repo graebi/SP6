@@ -3,6 +3,7 @@ package de.tg76.sp6;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //By click on button logout
             case R.id.bLogout:
                // userLocalStore.clearUserData();
-                //userLocalStore.setUserLoggedIn(false);
+              //  userLocalStore.setUserLoggedIn(false);
 
                 //Original - changed 19/10
                 //startActivity(new Intent(this,Login.class));
@@ -77,5 +78,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,SmartParking.class));
                 break;
         }
+    }
+    @Override
+    protected void onDestroy() {
+        Log.d("Testing", "onDestroy");
+        userLocalStore.clearUserData();
+        userLocalStore.setUserLoggedIn(false);
+        super.onDestroy();
+
     }
 }

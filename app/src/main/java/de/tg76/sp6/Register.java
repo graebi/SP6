@@ -20,6 +20,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     private EditText etUsername;
     private EditText etPassword;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +47,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 String email = etEmail.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
+                int customer_id=0;
 
                 //Create instance of user object
-                User user = new User(name,email,username,password);
+                User user = new User(customer_id,name,email,username,password);
 
                 //Store user data - calling function
                 registerUser(user);

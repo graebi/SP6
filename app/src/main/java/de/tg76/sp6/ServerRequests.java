@@ -30,6 +30,7 @@ class ServerRequests {
     //Connection time in mill sec before disconnect
     private static final int CONNECTION_TIME = 1000*15;
     private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
+    int customer_id=0;
 
     //Constructor
     public ServerRequests(Context context){
@@ -155,10 +156,13 @@ class ServerRequests {
                 if(jObject.length()==0){
                     returnedUser = null;
                 }else {
+                    int customer_id = jObject.getInt("customer_id");
                     String name = jObject.getString("name");
                     String email = jObject.getString("email");
+                    //int customer_id = jObject.getInt();
 
-                    returnedUser = new User(name, email, user.username, user.password);
+
+                    returnedUser = new User(customer_id,name, email, user.username, user.password);
                 }
             }catch (Exception e){
                 e.printStackTrace();

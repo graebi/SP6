@@ -10,20 +10,30 @@ public class User {
     final String username;
     final String password;
     final String email;
+    int customer_id;
+
 
     //Constructor when user register
-    public User (String name, String email,String username, String password){
+    public User (int customer_id,String name, String email,String username, String password){
+
+        this.customer_id = customer_id;
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
+
+
+
     }
 
     //Constructor when user logs on
-    public User (String username, String password){
+    public User (int id,String username, String password){
+        this.customer_id = id;
         this.username = username;
         this.password = password;
         this.email = "";
         this.name = "";
+
+
     }
 }

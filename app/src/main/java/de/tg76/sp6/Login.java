@@ -19,7 +19,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etUsername;
     private EditText etPassword;
-
+    int customer_id;
     private UserLocalStore userLocalStore;
 
 
@@ -49,10 +49,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             //By click on button login
             case R.id.bLogin:
                 //Update local storage user data
+
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                User user = new User(username, password);
+                User user = new User(customer_id,username, password);
 
                 authenticate(user);
                 break;
