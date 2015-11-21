@@ -8,6 +8,7 @@ package de.tg76.sp6;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 class PagerAdapter extends FragmentStatePagerAdapter {
     private final int mNumOfTabs;
@@ -22,12 +23,16 @@ class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
+                Log.d("Testing", "PagerAdapter Fragment1");
                 return new Fragment1();
             case 1:
+                Log.d("Testing", "PagerAdapter Fragment2");
                 return new Fragment2();
             case 2:
+                Log.d("Testing", "PagerAdapter Fragment3");
                 return new Fragment3();
             case 3:
+                Log.d("Testing", "PagerAdapter Fragment4");
                 return new Fragment4();
             default:
                 return null;

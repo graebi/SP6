@@ -80,11 +80,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     @Override
-    protected void onDestroy() {
-        Log.d("Testing", "onDestroy");
+         protected void onDestroy() {
+        Log.d("Testing", "Main onDestroy");
         userLocalStore.clearUserData();
         userLocalStore.setUserLoggedIn(false);
         super.onDestroy();
 
     }
+
+    @Override
+    public void onDetachedFromWindow() {
+
+        Log.d("Testing", "Main onDetachedFromWindow");
+        userLocalStore.clearUserData();
+        userLocalStore.setUserLoggedIn(false);
+        super.onDetachedFromWindow();
+    }
+
+
 }

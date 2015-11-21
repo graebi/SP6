@@ -69,17 +69,18 @@ public class Fragment3 extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         if(initMap()){
 
             //Call function
             gotoLocation(Dub_LAT, Dub_LNG, 13);
 
-            Log.d("Testing", "Checkpoint 2");
+            Log.d("Testing", "Fragment3 initMap");
 
             //Set icon my location
             mMap.setMyLocationEnabled(true);
 
-            Log.d("Testing", "RetrieveTask called");
+            Log.d("Testing", "Fragment3 RetrieveTask called");
             // Starting locations retrieve task
             new RetrieveTask().execute();
 
@@ -204,4 +205,11 @@ public class Fragment3 extends Fragment {
         }
     }
 
+
+
+    @Override
+    public void onDetach() {
+        Log.d("Testing", "Fragment3 onDetach");
+        super.onDetach();
+    }
 }

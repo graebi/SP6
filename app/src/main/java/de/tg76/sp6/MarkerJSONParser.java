@@ -27,12 +27,12 @@ public class MarkerJSONParser {
         /** Invoking getMarkers with the array of json object
          * where each json object represent a marker
          */
-        Log.d("Testing", "getMarkers call");
+     //   Log.d("Testing", "getMarkers call");
         return getMarkers(jMarkers);
     }
 
     private List<HashMap<String, String>> getMarkers(JSONArray jMarkers){
-        Log.d("Testing", "getMarkers start");
+      //  Log.d("Testing", "getMarkers start");
         int markersCount = jMarkers.length();
         List<HashMap<String, String>> markersList = new ArrayList<HashMap<String,String>>();
         HashMap<String, String> marker = null;
@@ -41,39 +41,39 @@ public class MarkerJSONParser {
         for(int i=0; i<markersCount;i++){
             try {
                 /** Call getMarker with marker JSON object to parse the marker */
-                Log.d("Testing", "Call getMarker");
+        //        Log.d("Testing", "Call getMarker");
                 marker = getMarker((JSONObject)jMarkers.get(i));
                 markersList.add(marker);
             }catch (JSONException e){
                 e.printStackTrace();
             }
         }
-        Log.d("Testing", "getMarkers return");
+     //   Log.d("Testing", "getMarkers return");
         return markersList;
     }
 
     /** Parsing the Marker JSON object */
     private HashMap<String, String> getMarker(JSONObject jMarker){
-        Log.d("Testing", "getMarker start");
+       // Log.d("Testing", "getMarker start");
         HashMap<String, String> marker = new HashMap<String, String>();
         String lat = "Latitude";
         String lng = "Longitude";
         String desc = "Description";
 
         try {
-            Log.d("Testing", "Extracting latitude, if available");
+        //    Log.d("Testing", "Extracting latitude, if available");
             // Extracting latitude, if available
             if(!jMarker.isNull("Latitude")){
                 lat = jMarker.getString("Latitude");
             }
 
-            Log.d("Testing", "Extracting longitude, if available");
+        //    Log.d("Testing", "Extracting longitude, if available");
             // Extracting longitude, if available
             if(!jMarker.isNull("Longitude")){
                 lng = jMarker.getString("Longitude");
             }
 
-            Log.d("Testing", "Extracting Description, if available");
+        //    Log.d("Testing", "Extracting Description, if available");
             // Extracting longitude, if available
             if(!jMarker.isNull("Description")){
                 desc = jMarker.getString("Description");

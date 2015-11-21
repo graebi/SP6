@@ -30,6 +30,7 @@ import java.util.HashMap;
 
 public class Fragment1 extends Fragment {
 
+
     //Variable declaration
     Button buttonGet;
     ListView list;
@@ -56,11 +57,13 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_fragment1, container, false);
 
+
+
     }
 
     @Override
     public void onDetach() {
-        Log.d("Testing", "onDetach function");//delete this
+        Log.d("Testing", "Fragment1 onDetach");//delete this
         super.onDetach();
     }
 
@@ -71,7 +74,6 @@ public class Fragment1 extends Fragment {
         //Initializing JSONArray
         oslist = new ArrayList<>();
         new JSONParse().execute();
-
 
         //noinspection ConstantConditions  Method invocation 'getView().findViewById(R.id.buttonGet)' at line 69 may produce 'java.lang.NullPointerException'
         buttonGet = (Button)getView().findViewById(R.id.buttonGet);

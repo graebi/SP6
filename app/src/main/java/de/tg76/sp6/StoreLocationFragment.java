@@ -75,7 +75,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
 
         lblLocation = (TextView) getActivity().findViewById(R.id.lblLocation);
         btnShowLocation = (Button) getActivity().findViewById(R.id.btnShowLocation);
-
+        Log.d("Testing", "onActivityCreated - btnShowLocation called");
 
         //-----------------------------
         //Assign ID to variable
@@ -103,7 +103,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
             @Override
             public void onClick(View v) {
                 displayLocation();
-                Log.d("User", "call displayUserDetails function");
+                Log.d("Testing", "StoreLocationFragment call displayUserDetails function");
                 displayUserDetails();
             }
         });
@@ -122,6 +122,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
 
+            //Write co-ordination on screen
             lblLocation.setText(latitude + ", " + longitude);
 
         } else {
@@ -197,7 +198,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     @Override
     public void onConnectionSuspended(int arg0) {
         mGoogleApiClient.connect();
-    }
+    }//End onConnectionSuspended
 
     //Function to display user details on activity_main
     private void displayUserDetails(){
@@ -207,9 +208,8 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
         etUsername.setText(user.username);
         etUserID.setText(user.customer_id +"");
 
+    }//End displayUserDetails
 
-    //    etName.setText(user.name);
-     //   etEmail.setText(user.email);
-    }
+
 
 }//End main

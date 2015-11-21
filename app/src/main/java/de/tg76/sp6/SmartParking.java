@@ -5,17 +5,21 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 
 public class SmartParking extends AppCompatActivity {
-    private UserLocalStore userLocalStore;
+   private UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        userLocalStore = new UserLocalStore(this);
+
         setContentView(R.layout.activity_smart_parking);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,4 +69,22 @@ public class SmartParking extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+
+            Log.d("Testing", "SmartParking onDestroy");
+            userLocalStore.clearUserData();
+            userLocalStore.setUserLoggedIn(false);
+            super.onDestroy();
+
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+
+        Log.d("Testing", "SmartParking onDetachedFromWindow");
+        userLocalStore.clearUserData();
+        userLocalStore.setUserLoggedIn(false);
+        super.onDetachedFromWindow();
+    }
 }
