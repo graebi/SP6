@@ -110,8 +110,8 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
         //Assign ID to variable - loeschen
        // etName = (EditText) getActivity().findViewById(R.id.etName);
        // etEmail = (EditText) getActivity().findViewById(R.id.etEmail);
-        etUsername = (EditText) getActivity().findViewById(R.id.etUsername);
-        etUserID = (EditText) getActivity().findViewById(R.id.etUserID);
+       // etUsername = (EditText) getActivity().findViewById(R.id.etUsername);
+       // etUserID = (EditText) getActivity().findViewById(R.id.etUserID);
 
 
 
@@ -237,8 +237,9 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
         Log.d("Testing", "StroeLocationFragnemt displayUserDetails function");
         User user = userLocalStore.getLoggedInUser();
 
-        etUsername.setText(user.username);
-        etUserID.setText(user.customer_id +"");
+
+       // etUsername.setText(user.username);
+       // etUserID.setText(user.customer_id +"");
         Log.d("Testing", "StroeLocationFragnemt user.customer_id");
         customer_idfk = user.customer_id;
 

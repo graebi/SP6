@@ -12,4 +12,6 @@
     <string name="getDataButton">Get Data</string>
     <string name="btn_get_location">Store Location</string>
     <string name="lbl_you_are_at">coordiante</string>
+    <string name="displaylocation">Display Location</string>
+    <string name="btn_display_location">Display Location</string>
 </resources>
