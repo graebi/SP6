@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SP6</string>
 
-    <string name="action_settings" translatable="false">Settings</string>
+    <string name="action_logout" translatable="false">Logout</string>
     <string name="title_activity_login" translatable="false">Login</string>
     <string name="title_activity_register" translatable="false">Register</string>
     <string name="title_activity_smart_parking" translatable="false">SmartParking</string>

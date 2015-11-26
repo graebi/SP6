@@ -30,7 +30,6 @@ import java.util.HashMap;
 
 public class Fragment1 extends Fragment {
 
-
     //Variable declaration
     Button buttonGet;
     ListView list;
@@ -56,7 +55,6 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_fragment1, container, false);
-
 
 
     }

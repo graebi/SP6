@@ -1,5 +1,6 @@
 package de.tg76.sp6;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 
 
 public class SmartParking extends AppCompatActivity {
@@ -31,6 +31,7 @@ public class SmartParking extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("MAP"));
         tabLayout.addTab(tabLayout.newTab().setText("Favorite"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
 
         //ViewPager used for swiping the activity
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -59,32 +60,38 @@ public class SmartParking extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        Log.d("Testing", "SmartParking onCreateOptionsMenu");//delete this
         return true;
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        //Logout user function in Menue
         int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
-
-    }
-
-    @Override
-    protected void onDestroy() {
-
-            Log.d("Testing", "SmartParking onDestroy");
-            userLocalStore.clearUserData();
-            userLocalStore.setUserLoggedIn(false);
-            super.onDestroy();
-
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-
-        Log.d("Testing", "SmartParking onDetachedFromWindow");
+        Log.d("Testing", "SmartParking onOptionsItemSelected");//delete this
         userLocalStore.clearUserData();
         userLocalStore.setUserLoggedIn(false);
-        super.onDetachedFromWindow();
+        startActivity(new Intent(this,Login.class));
+
+        //Original - changed 19/10
+       // startActivity(new Intent(this,Login.class))
+       return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        Log.d("Testing", "SmartParking onContextItemSelected");//delete this
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                userLocalStore.clearUserData();
+                userLocalStore.setUserLoggedIn(false);
+                startActivity(new Intent(this, Login.class));
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
 }
