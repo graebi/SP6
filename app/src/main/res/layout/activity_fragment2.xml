@@ -8,8 +8,6 @@
     android:orientation="vertical"
     >
 
-
-
     <FrameLayout
         android:id="@+id/store_location"
         android:name="de.tg76.smartparking.StoreLocationFragment"

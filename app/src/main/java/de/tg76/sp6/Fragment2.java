@@ -32,7 +32,7 @@ public class Fragment2 extends Fragment {
 
         Log.d("Testing", "Fragment2 FragmentTransaction");
         //Adding fragments onto Fragment2
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.store_location, mStoreLocationFragment);
         transaction.add(R.id.request_location, mRequestLocationFragment).commit();
 

@@ -136,6 +136,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
                 displayUserDetails();
                 AsyncT asyncT = new AsyncT();
                 asyncT.execute();
+                ((EditText) getActivity().findViewById(R.id.edDescription)).setText("");
             }
         });
 
@@ -287,12 +288,8 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
             @Override
             //When AsyncTask is finish
             protected void onPostExecute(Void aVoid) {
-                //Stop progress bar displayed when AsyncTask is finish
-             //   progressDialog.dismiss();
-                //Inform activity which started process that process is finished
-              //  userCallback.done(null);
-                super.onPostExecute(aVoid);
             }
         }
 
 }//End main
+
