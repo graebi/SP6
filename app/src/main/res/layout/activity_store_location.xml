@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Longitude - Latitude"
+        android:text="Latitude - Longitude"
         android:id="@+id/coordination"
         android:layout_marginTop="12dp"
         android:layout_alignParentLeft="true"

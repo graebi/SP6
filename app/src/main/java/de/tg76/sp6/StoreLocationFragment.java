@@ -262,8 +262,8 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
                 //Data which are send to server
                 Log.d("Testing", "StroeLocationFragnemt doInBackground");
                 ArrayList<NameValuePair> dataToSend = new ArrayList<>();
-                dataToSend.add(new BasicNameValuePair("longitude",nlatitude ));
-                dataToSend.add(new BasicNameValuePair("latitude", nlongitude));
+                dataToSend.add(new BasicNameValuePair("longitude", nlongitude));
+                dataToSend.add(new BasicNameValuePair("latitude", nlatitude));
                 dataToSend.add(new BasicNameValuePair("description", description));
                 dataToSend.add(new BasicNameValuePair("customer_idfk", ncustomer_idfk));
 

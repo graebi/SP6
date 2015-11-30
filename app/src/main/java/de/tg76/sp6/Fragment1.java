@@ -9,7 +9,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,12 +57,6 @@ public class Fragment1 extends Fragment {
     }
 
     @Override
-    public void onDetach() {
-        Log.d("Testing", "Fragment1 onDetach");//delete this
-        super.onDetach();
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -80,7 +73,6 @@ public class Fragment1 extends Fragment {
             }
         });
     }
-
 
     //Inner Class
     private class JSONParse extends AsyncTask<String, String, JSONObject> {
@@ -117,7 +109,7 @@ public class Fragment1 extends Fragment {
             json = jParser.getJSONFromUrl(url);
 
             return json;
-        }
+        }//End doInBackground
 
         @Override
         protected void onPostExecute(JSONObject json) {
@@ -169,6 +161,6 @@ public class Fragment1 extends Fragment {
 
         }//end of onPostExecute
 
-    }
+    }//End AsyncTask
 
 }//changing on tabs-working

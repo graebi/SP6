@@ -1,4 +1,7 @@
 package de.tg76.sp6;
+/**
+ * Created by adm_toto on 15/11/2015.
+ */
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,9 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by adm_toto on 16/11/2015.
- */
+
 public class RequestLocationFragment extends Fragment {
 
     //Connection time in mill sec before disconnect
@@ -133,8 +134,8 @@ public class RequestLocationFragment extends Fragment {
                 if(jObject.length()==0){
                     Toast.makeText(getActivity(),"No object retrieved from database",Toast.LENGTH_LONG).show();
                 }else {
-                    longitude = jObject.getDouble("longitude");
                     latitude = jObject.getDouble("latitude");
+                    longitude = jObject.getDouble("longitude");
                     description = jObject.getString("description");
 
                     //int customer_id = jObject.getInt();
