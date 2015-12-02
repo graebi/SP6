@@ -1,6 +1,8 @@
 package de.tg76.sp6;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +24,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static android.widget.AdapterView.*;
+
 public class Fragment4 extends Fragment {
 
     //Variable declaration
@@ -29,18 +33,18 @@ public class Fragment4 extends Fragment {
     TextView tvName;
     ListView list;
 
+    public static boolean updateItem = true;
+
     private UserLocalStore userLocalStore;
     int customer_idfk;
-
+    String favorite_id;
 
     //Creating ArrayList of type HashMap to store key & value pair
     ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
-
-
     //URL to get JSON Array
     private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
-
+    private static String url1 = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/DeleteFavorite.php";
 
     //JSON Node Names
     public static final String Key_ARRAY = "result";
@@ -50,16 +54,13 @@ public class Fragment4 extends Fragment {
     public static final String KEY_LATITUDE = "latitude";
     public static final String KEY_LONGITUDE = "longitude";
 
-
     //Creating JSONArray
     JSONArray capark = null;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_fragment4, container, false);
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -74,7 +75,6 @@ public class Fragment4 extends Fragment {
         Log.d("Fragment4", "onActivityCreated");
 
         new JSONParse().execute();
-
     }
 
     //Inner Class
@@ -112,8 +112,14 @@ public class Fragment4 extends Fragment {
         protected JSONObject doInBackground(String... args) {
 
             // Getting JSON from URL
-            json = jParser.getJSONFromUrl(url, ncustomer_idfk);
+            if(updateItem){
+                json = jParser.getJSONFromUrl(url, ncustomer_idfk);
+            }
+            else{
+                json = jParser.getJSONFromUrl(url1, favorite_id);
+            }
 
+            updateItem=true;
             return json;
         }//End doInBackground
 
@@ -136,8 +142,7 @@ public class Fragment4 extends Fragment {
                     String longitude = c.getString(KEY_LONGITUDE);
                     String latitude = c.getString(KEY_LATITUDE);
 
-
-                    // Adding value HashMap key => value == CARPARKNAME => PARNELL
+                    // Adding value HashMap key => value
                     HashMap<String, String> map = new HashMap<>();
                     map.put(KEY_ID, id);
                     map.put(KEY_NAME, name);
@@ -155,13 +160,47 @@ public class Fragment4 extends Fragment {
                             new String[]{KEY_NAME, KEY_DESCRIPTION}, new int[]{
                             R.id.tvName, R.id.tvDescription});
                     list.setAdapter(adapter);
-                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    list.setOnItemLongClickListener(new OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                            Toast.makeText(getActivity(), "You have deleted " + oslist.get(+position).get(KEY_ID), Toast.LENGTH_SHORT).show();
+                            updateItem = false;
+                            favorite_id = oslist.get(+position).get(KEY_ID);//get favorite id which needs to be deleted
+                            new JSONParse().execute();
+                            return true;
+
+                        }//End onItemLongClick
+                    });//End setOnItemLongClickListener
+
+
+                    list.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("carparkname"), Toast.LENGTH_SHORT).show();
+
+                            //Getting LATITUDE/LONGITUDE from selected car park
+                            String LATITUDE = oslist.get(+position).get(KEY_LATITUDE);
+                            String LONGITUDE = oslist.get(+position).get(KEY_LONGITUDE);
+                            double dLATITUDE = Double.parseDouble(LATITUDE);
+                            double dLONGITUDE = Double.parseDouble(LONGITUDE);
+
+                            //Starting google maps navigation
+                            String url = "http://maps.google.com/maps?f=d&daddr=" + dLATITUDE + "," + dLONGITUDE + "&dirflg=d&layer=t";
+                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(url));
+                            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                            startActivity(intent);
+
                         }//onItemClick
 
                     });//setOnItemClickListener
+
+
+
+
+
+
 
                 }//end of for loop
 
@@ -173,4 +212,5 @@ public class Fragment4 extends Fragment {
         }//end of onPostExecute
 
     }//End AsyncTask
+
 }//End listfragment

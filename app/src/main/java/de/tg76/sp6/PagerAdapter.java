@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 class PagerAdapter extends FragmentStatePagerAdapter {
+
     private final int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
@@ -20,6 +21,7 @@ class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        // getItem is called to instantiate the fragment for the given page.
 
         switch (position) {
             case 0:
@@ -35,7 +37,7 @@ class PagerAdapter extends FragmentStatePagerAdapter {
                 Log.d("Testing", "PagerAdapter Fragment4");
                 return new Fragment4();
             default:
-                return null;
+                return new Fragment1();
         }
     }
 

@@ -70,6 +70,8 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 new JSONParse().execute();
+
+
             }
         });
     }

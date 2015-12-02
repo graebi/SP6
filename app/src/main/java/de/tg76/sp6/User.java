@@ -12,7 +12,6 @@ public class User {
     final String email;
     int customer_id;
 
-
     //Constructor when user register
     public User (int customer_id,String name, String email,String username, String password){
 
@@ -21,9 +20,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-
-
-
     }
 
     //Constructor when user logs on
@@ -33,7 +29,5 @@ public class User {
         this.password = password;
         this.email = "";
         this.name = "";
-
-
     }
 }
