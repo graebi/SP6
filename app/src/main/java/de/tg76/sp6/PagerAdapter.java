@@ -12,6 +12,7 @@ import android.util.Log;
 
 class PagerAdapter extends FragmentStatePagerAdapter {
 
+
     private final int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {

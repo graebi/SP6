@@ -36,11 +36,25 @@ public class Fragment1 extends Fragment {
     TextView name;
     TextView spaces;
 
+    private UserLocalStore userLocalStore;
+
+    static int customer_idfk;
+    static int intCarparkID;
+    public static String ncustomer_idfk ;
+    public static String carparkID ;
+
+
+
     //Creating ArrayList of type HashMap to store key & value pair
     ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
+    //Connection time in mill sec before disconnect
+    private static final int CONNECTION_TIME = 1000*15;
+    private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
+
     //URL to get JSON Array
     private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchCarPark.php";
+    //private static String url1 = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/StoreFavorite.php";
 
     //JSON Node Names
     public static final String Key_ARRAY = "result";
@@ -60,6 +74,11 @@ public class Fragment1 extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //Getting access to local store by creating an instance userLocalStore -----------------
+        userLocalStore = new UserLocalStore(getActivity());
+        User user = userLocalStore.getLoggedInUser();
+        customer_idfk = user.customer_id;//Get user id
+
         //Initializing JSONArray
         oslist = new ArrayList<>();
         new JSONParse().execute();
@@ -70,8 +89,6 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 new JSONParse().execute();
-
-
             }
         });
     }
@@ -82,7 +99,7 @@ public class Fragment1 extends Fragment {
         private ProgressDialog pDialog;
 
         //Instantiate object jParser from class
-        JSONParser jParser = new JSONParser();
+       JSONParser jParser = new JSONParser();
 
         //Variable for JSONObject
         private JSONObject json;
@@ -101,13 +118,10 @@ public class Fragment1 extends Fragment {
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
-
         }
 
         @Override
         protected JSONObject doInBackground(String... args) {
-
-            // Getting JSON from URL
             json = jParser.getJSONFromUrl(url);
 
             return json;
@@ -146,6 +160,23 @@ public class Fragment1 extends Fragment {
                             new String[]{KEY_ID, KEY_NAME, KEY_SPACES}, new int[]{
                             R.id.id, R.id.name, R.id.spaces});
                     list.setAdapter(adapter);
+
+                    list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                            intCarparkID = position +1;
+                            carparkID = Integer.toString(intCarparkID);
+                            ncustomer_idfk = String.valueOf(customer_idfk);
+                            Toast.makeText(getActivity(), "Storing carpark " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_LONG).show();
+
+                            AddDeleteFavorite asyncT = new AddDeleteFavorite();
+                            AddDeleteFavorite.favoriteAdd =true;
+                            asyncT.execute();
+
+                            return true;
+                        }//End onItemLongClick
+                    });//End setOnItemLongClickListener
+
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -164,5 +195,6 @@ public class Fragment1 extends Fragment {
         }//end of onPostExecute
 
     }//End AsyncTask
+
 
 }//changing on tabs-working

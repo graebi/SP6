@@ -36,15 +36,16 @@ public class Fragment4 extends Fragment {
     public static boolean updateItem = true;
 
     private UserLocalStore userLocalStore;
-    int customer_idfk;
-    String favorite_id;
+
+    static int customer_idfk;
+    public static String ncustomer_idfk ;
+    public static String deleteFavorite ;
 
     //Creating ArrayList of type HashMap to store key & value pair
     ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
     //URL to get JSON Array
     private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
-    private static String url1 = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/DeleteFavorite.php";
 
     //JSON Node Names
     public static final String Key_ARRAY = "result";
@@ -69,23 +70,19 @@ public class Fragment4 extends Fragment {
         //Getting access to local store by creating an instance userLocalStore -----------------
         userLocalStore = new UserLocalStore(getActivity());
         User user = userLocalStore.getLoggedInUser();
-        customer_idfk = user.customer_id;
+        customer_idfk = user.customer_id;//Get user id
 
         oslist = new ArrayList<>();
-        Log.d("Fragment4", "onActivityCreated");
-
         new JSONParse().execute();
     }
 
     //Inner Class
     private class JSONParse extends AsyncTask<String, String, JSONObject> {
 
-       String ncustomer_idfk = String.valueOf(customer_idfk) ;
-
         private ProgressDialog pDialog;
 
         //Instantiate object jParser from class
-        JSONParserFavorite jParser = new JSONParserFavorite();
+        JSONParser jParser = new JSONParser();
 
         //Variable for JSONObject
         private JSONObject json;
@@ -111,15 +108,12 @@ public class Fragment4 extends Fragment {
         @Override
         protected JSONObject doInBackground(String... args) {
 
-            // Getting JSON from URL
-            if(updateItem){
-                json = jParser.getJSONFromUrl(url, ncustomer_idfk);
-            }
-            else{
-                json = jParser.getJSONFromUrl(url1, favorite_id);
-            }
+            //Change int to String
+            ncustomer_idfk = String.valueOf(customer_idfk);
 
-            updateItem=true;
+            // Getting JSON from URL
+            json = jParser.getJSONFromUrl(url,ncustomer_idfk);
+
             return json;
         }//End doInBackground
 
@@ -161,24 +155,28 @@ public class Fragment4 extends Fragment {
                             R.id.tvName, R.id.tvDescription});
                     list.setAdapter(adapter);
 
+                    //Deleting carpark
                     list.setOnItemLongClickListener(new OnItemLongClickListener() {
                         @Override
                         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getActivity(), "You have deleted " + oslist.get(+position).get(KEY_ID), Toast.LENGTH_SHORT).show();
-                            updateItem = false;
-                            favorite_id = oslist.get(+position).get(KEY_ID);//get favorite id which needs to be deleted
-                            new JSONParse().execute();
+                            Toast.makeText(getActivity(), "Deleting carpark " + oslist.get(+position).get("carparkname"), Toast.LENGTH_LONG).show();
+                            deleteFavorite = oslist.get(+position).get(KEY_ID);//get favorite id which needs to be deleted
+
+                            //Calling class to delete
+                            AddDeleteFavorite asyncT = new AddDeleteFavorite();
+                            AddDeleteFavorite.favoriteAdd =false;
+                            asyncT.execute();
+
                             return true;
 
                         }//End onItemLongClick
                     });//End setOnItemLongClickListener
 
-
+                    //Calling Google navigation
                     list.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                            Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("carparkname"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Navigate you to " + oslist.get(+position).get("carparkname"), Toast.LENGTH_SHORT).show();
 
                             //Getting LATITUDE/LONGITUDE from selected car park
                             String LATITUDE = oslist.get(+position).get(KEY_LATITUDE);
@@ -196,12 +194,6 @@ public class Fragment4 extends Fragment {
 
                     });//setOnItemClickListener
 
-
-
-
-
-
-
                 }//end of for loop
 
             }//end of try
@@ -212,5 +204,6 @@ public class Fragment4 extends Fragment {
         }//end of onPostExecute
 
     }//End AsyncTask
+
 
 }//End listfragment
