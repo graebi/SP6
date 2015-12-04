@@ -43,7 +43,6 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     //private final ProgressDialog progressDialog;
 
 
-
     //Connection time in mill sec before disconnect
     private static final int CONNECTION_TIME = 1000*15;
     private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
@@ -53,20 +52,10 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
-    private Location mLastLocation;
-
-    // Response
-    String responseServer,description;
-    double latitude=0,longitude=0 ;
-    int customer_idfk;
-    TextView txt;
-
-//-----------------------------------
-  //  private EditText etName;
-  //  private EditText etEmail;
-    private EditText etUsername, etUserID;//loeschen
-
-
+    private String description;
+    private double latitude=0;
+    private double longitude=0 ;
+    private int customer_idfk;
 
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
@@ -83,7 +72,6 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
 
     // UI elements
     private TextView lblLocation;
-    private Button btnShowLocation;
     private EditText edDescription;
     private UserLocalStore userLocalStore;
 
@@ -101,20 +89,10 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
         super.onActivityCreated(savedInstanceState);
 
         lblLocation = (TextView) getActivity().findViewById(R.id.lblLocation);
-        btnShowLocation = (Button) getActivity().findViewById(R.id.btnShowLocation);
+        Button btnShowLocation = (Button) getActivity().findViewById(R.id.btnShowLocation);
         edDescription = (EditText)getActivity().findViewById(R.id.edDescription);
 
         Log.d("Testing", "onActivityCreated - btnShowLocation called");
-
-        //-----------------------------
-        //Assign ID to variable - loeschen
-       // etName = (EditText) getActivity().findViewById(R.id.etName);
-       // etEmail = (EditText) getActivity().findViewById(R.id.etEmail);
-       // etUsername = (EditText) getActivity().findViewById(R.id.etUsername);
-       // etUserID = (EditText) getActivity().findViewById(R.id.etUserID);
-
-
-
 
         // First we need to check availability of play services
         if (checkPlayServices()) {
@@ -148,7 +126,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     private void displayLocation() {
 
         description = edDescription.getText().toString();
-        mLastLocation = LocationServices.FusedLocationApi
+        Location mLastLocation = LocationServices.FusedLocationApi
                 .getLastLocation(mGoogleApiClient);
 
         if (mLastLocation != null) {
@@ -166,19 +144,16 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     }//End displayLocation
 
 
-    /**
-     * Creating google api client object
-     * */
-    protected synchronized void buildGoogleApiClient() {
+    //Creating google api client object
+    private synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
     }//End buildGoogleApiClient
 
-    /**
-     * Method to verify google play services on the device
-     * */
+
+     //Method to verify google play services on the device
     private boolean checkPlayServices() {
         int resultCode = GooglePlayServicesUtil
                 .isGooglePlayServicesAvailable(getActivity());
@@ -238,23 +213,18 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
         Log.d("Testing", "StroeLocationFragnemt displayUserDetails function");
         User user = userLocalStore.getLoggedInUser();
 
-
-       // etUsername.setText(user.username);
-       // etUserID.setText(user.customer_id +"");
         Log.d("Testing", "StroeLocationFragnemt user.customer_id");
         customer_idfk = user.customer_id;
 
     }//End displayUserDetails
 
-
-
     /* Inner class to get response */
     public class AsyncT extends AsyncTask<Void, Void, Void> {
 
 
-        String nlatitude = String.valueOf(latitude);
-        String nlongitude = String.valueOf(longitude);
-        String ncustomer_idfk = String.valueOf(customer_idfk) ;
+        final String nlatitude = String.valueOf(latitude);
+        final String nlongitude = String.valueOf(longitude);
+        final String ncustomer_idfk = String.valueOf(customer_idfk) ;
 
             @Override
             //Run in the background when StoreUserDataAsyncTask starts - Accessing the server

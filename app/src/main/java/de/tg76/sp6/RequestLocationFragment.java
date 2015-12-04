@@ -1,6 +1,7 @@
 package de.tg76.sp6;
 /**
  * Created by adm_toto on 15/11/2015.
+ * work on it
  */
 
 import android.os.AsyncTask;
@@ -39,7 +40,6 @@ public class RequestLocationFragment extends Fragment {
     private static final int CONNECTION_TIME = 1000*15;
     private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
 
-
     //Local variable
     private UserLocalStore userLocalStore;
     int customer_idfk;
@@ -50,7 +50,6 @@ public class RequestLocationFragment extends Fragment {
     //UI elements
     private TextView tvLocationdetails;
     private TextView tvDescription;
-    private Button btnGetLocation;
 
 
     @Nullable
@@ -69,7 +68,7 @@ public class RequestLocationFragment extends Fragment {
 
         tvLocationdetails = (TextView) getActivity().findViewById(R.id.tvLocationdetails);
         tvDescription = (TextView) getActivity().findViewById(R.id.tvDescription);
-        btnGetLocation = (Button) getActivity().findViewById(R.id.btnGetLocation);
+        Button btnGetLocation = (Button) getActivity().findViewById(R.id.btnGetLocation);
 
         // Show location button click listener
         btnGetLocation.setOnClickListener(new View.OnClickListener() {

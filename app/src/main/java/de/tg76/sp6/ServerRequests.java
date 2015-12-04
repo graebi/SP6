@@ -161,7 +161,6 @@ class ServerRequests {
                     String email = jObject.getString("email");
                     //int customer_id = jObject.getInt();
 
-
                     returnedUser = new User(customer_id,name, email, user.username, user.password);
                 }
             }catch (Exception e){

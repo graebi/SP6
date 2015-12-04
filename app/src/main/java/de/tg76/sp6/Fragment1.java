@@ -30,40 +30,36 @@ import java.util.HashMap;
 public class Fragment1 extends Fragment {
 
     //Variable declaration
-    Button buttonGet;
-    ListView list;
-    TextView id;
-    TextView name;
-    TextView spaces;
+    private Button buttonGet;
+    private ListView list;
+    private TextView id;
+    private TextView name;
+    private TextView spaces;
 
-    private UserLocalStore userLocalStore;
-
-    static int customer_idfk;
-    static int intCarparkID;
+    private static int customer_idfk;
+    private static int intCarparkID;
     public static String ncustomer_idfk ;
     public static String carparkID ;
 
 
 
     //Creating ArrayList of type HashMap to store key & value pair
-    ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
+    private ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
     //Connection time in mill sec before disconnect
     private static final int CONNECTION_TIME = 1000*15;
     private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
 
-    //URL to get JSON Array
-    private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchCarPark.php";
     //private static String url1 = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/StoreFavorite.php";
 
     //JSON Node Names
-    public static final String Key_ARRAY = "result";
-    public static final String KEY_ID = "CARPARK_ID";
-    public static final String KEY_NAME = "CARPARKNAME";
-    public static final String KEY_SPACES = "SPACE";
+    private static final String Key_ARRAY = "result";
+    private static final String KEY_ID = "CARPARK_ID";
+    private static final String KEY_NAME = "CARPARKNAME";
+    private static final String KEY_SPACES = "SPACE";
 
     //Creating JSONArray
-    JSONArray capark = null;
+    private JSONArray capark = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,7 +71,7 @@ public class Fragment1 extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         //Getting access to local store by creating an instance userLocalStore -----------------
-        userLocalStore = new UserLocalStore(getActivity());
+        UserLocalStore userLocalStore = new UserLocalStore(getActivity());
         User user = userLocalStore.getLoggedInUser();
         customer_idfk = user.customer_id;//Get user id
 
@@ -99,7 +95,7 @@ public class Fragment1 extends Fragment {
         private ProgressDialog pDialog;
 
         //Instantiate object jParser from class
-       JSONParser jParser = new JSONParser();
+        final JSONParser jParser = new JSONParser();
 
         //Variable for JSONObject
         private JSONObject json;
@@ -122,6 +118,7 @@ public class Fragment1 extends Fragment {
 
         @Override
         protected JSONObject doInBackground(String... args) {
+            String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchCarPark.php";
             json = jParser.getJSONFromUrl(url);
 
             return json;

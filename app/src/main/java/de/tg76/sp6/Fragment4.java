@@ -27,6 +27,8 @@ import java.util.HashMap;
 import static android.widget.AdapterView.*;
 
 public class Fragment4 extends Fragment {
+    // Getting JSON from URL
+    String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
 
     //Variable declaration
     TextView tvDescription;
@@ -35,17 +37,12 @@ public class Fragment4 extends Fragment {
 
     public static boolean updateItem = true;
 
-    private UserLocalStore userLocalStore;
-
     static int customer_idfk;
     public static String ncustomer_idfk ;
     public static String deleteFavorite ;
 
     //Creating ArrayList of type HashMap to store key & value pair
     ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
-
-    //URL to get JSON Array
-    private static String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
 
     //JSON Node Names
     public static final String Key_ARRAY = "result";
@@ -68,7 +65,7 @@ public class Fragment4 extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         //Getting access to local store by creating an instance userLocalStore -----------------
-        userLocalStore = new UserLocalStore(getActivity());
+        UserLocalStore userLocalStore = new UserLocalStore(getActivity());
         User user = userLocalStore.getLoggedInUser();
         customer_idfk = user.customer_id;//Get user id
 
@@ -111,7 +108,7 @@ public class Fragment4 extends Fragment {
             //Change int to String
             ncustomer_idfk = String.valueOf(customer_idfk);
 
-            // Getting JSON from URL
+            //Calling JSONParser and retrieve object
             json = jParser.getJSONFromUrl(url,ncustomer_idfk);
 
             return json;
@@ -168,7 +165,6 @@ public class Fragment4 extends Fragment {
                             asyncT.execute();
 
                             return true;
-
                         }//End onItemLongClick
                     });//End setOnItemLongClickListener
 
@@ -189,7 +185,6 @@ public class Fragment4 extends Fragment {
                             Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(url));
                             intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                             startActivity(intent);
-
                         }//onItemClick
 
                     });//setOnItemClickListener
@@ -204,6 +199,5 @@ public class Fragment4 extends Fragment {
         }//end of onPostExecute
 
     }//End AsyncTask
-
 
 }//End listfragment

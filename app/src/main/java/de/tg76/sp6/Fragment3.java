@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +43,6 @@ public class Fragment3 extends Fragment {
 
     GoogleMap mMap;
     private static final int ERROR_Dialog_REQUEST = 9001;
-    private String desc;
     //private FragmentActivity myContext; delete
 
     // private LatLng defaultLatLng = new LatLng(39.233956, -77.484703);
@@ -73,7 +71,7 @@ public class Fragment3 extends Fragment {
         if(initMap()){
 
             //Call function
-            gotoLocation(Dub_LAT, Dub_LNG, 13);
+            gotoLocation(13);
 
             Log.d("Testing", "Fragment3 initMap");
 
@@ -124,8 +122,8 @@ public class Fragment3 extends Fragment {
     }
 
     //Function which shows default location when map is called - Dublin
-    private void gotoLocation(double lat, double lng, float zoom) {
-        LatLng latLng = new LatLng(lat, lng);
+    private void gotoLocation(float zoom) {
+        LatLng latLng = new LatLng(Fragment3.Dub_LAT, Fragment3.Dub_LNG);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, zoom);
         mMap.moveCamera(update);
     }
@@ -146,23 +144,21 @@ public class Fragment3 extends Fragment {
         protected String doInBackground(Void... params) {
             Log.d("Testing", "RetrieveTask start");
             String strUrl = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchMap.php";
-            URL url = null;
-            StringBuffer sb = new StringBuffer();
+            URL url;
+            StringBuilder sb = new StringBuilder();
             try {
                 url = new URL(strUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.connect();
                 InputStream iStream = connection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(iStream));
-                String line = "";
+                String line;
                 while( (line = reader.readLine()) != null){
                     sb.append(line);
                 }
                 reader.close();
                 iStream.close();
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -189,8 +185,7 @@ public class Fragment3 extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            List<HashMap<String, String>> markersList = markerParser.parse(json);
-            return markersList;
+            return markerParser.parse(json);
         }
 
         @Override
@@ -198,7 +193,7 @@ public class Fragment3 extends Fragment {
             Log.d("Testing", "last");
             for(int i=0; i<result.size();i++){
                 HashMap<String, String> marker = result.get(i);
-                desc = marker.get("Description");
+                String desc = marker.get("Description");
                 LatLng latlng = new LatLng(Double.parseDouble(marker.get("Latitude")), Double.parseDouble(marker.get("Longitude")));
                 addMarker(latlng, desc);
             }

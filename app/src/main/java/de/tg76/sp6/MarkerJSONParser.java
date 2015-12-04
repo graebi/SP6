@@ -34,8 +34,8 @@ public class MarkerJSONParser {
     private List<HashMap<String, String>> getMarkers(JSONArray jMarkers){
       //  Log.d("Testing", "getMarkers start");
         int markersCount = jMarkers.length();
-        List<HashMap<String, String>> markersList = new ArrayList<HashMap<String,String>>();
-        HashMap<String, String> marker = null;
+        List<HashMap<String, String>> markersList = new ArrayList<>();
+        HashMap<String, String> marker;
 
         /** Taking each marker, parses and adds to list object */
         for(int i=0; i<markersCount;i++){
@@ -55,7 +55,7 @@ public class MarkerJSONParser {
     /** Parsing the Marker JSON object */
     private HashMap<String, String> getMarker(JSONObject jMarker){
        // Log.d("Testing", "getMarker start");
-        HashMap<String, String> marker = new HashMap<String, String>();
+        HashMap<String, String> marker = new HashMap<>();
         String lat = "Latitude";
         String lng = "Longitude";
         String desc = "Description";
