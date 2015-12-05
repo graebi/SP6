@@ -6,6 +6,7 @@ package de.tg76.sp6;
  */
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -76,7 +77,10 @@ public class Fragment1 extends Fragment {
         buttonGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new JSONParse().execute();
+                //new JSONParse().execute();
+                Intent intent = getActivity().getIntent();
+                getActivity().finish();
+                startActivity(intent);
             }
         });
     }
@@ -102,7 +106,7 @@ public class Fragment1 extends Fragment {
 
             //original place
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Getting Data ...");
+            pDialog.setMessage("Getting Data C-Park...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();

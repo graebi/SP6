@@ -95,7 +95,7 @@ public class Fragment4 extends Fragment {
 
             //original place
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Getting Data ...");
+            pDialog.setMessage("Getting Data Favorite...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
@@ -163,6 +163,10 @@ public class Fragment4 extends Fragment {
                             AddDeleteFavorite asyncT = new AddDeleteFavorite();
                             AddDeleteFavorite.favoriteAdd =false;
                             asyncT.execute();
+
+                            Intent intent = getActivity().getIntent();
+                            getActivity().finish();
+                            startActivity(intent);
 
                             return true;
                         }//End onItemLongClick
