@@ -41,7 +41,7 @@ public class Fragment3 extends Fragment {
 
     // private GoogleApiClient mLocationClient; may be remove
 
-    GoogleMap mMap;
+    private GoogleMap mMap;
     private static final int ERROR_Dialog_REQUEST = 9001;
     //private FragmentActivity myContext; delete
 
@@ -90,7 +90,7 @@ public class Fragment3 extends Fragment {
     }
 
     //Function to verify connection to GooglePlayService
-    public boolean servicesOK(){
+    private boolean servicesOK(){
 
         int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
 

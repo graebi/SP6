@@ -28,32 +28,32 @@ import static android.widget.AdapterView.*;
 
 public class Fragment4 extends Fragment {
     // Getting JSON from URL
-    String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
+    private final String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
 
     //Variable declaration
-    TextView tvDescription;
-    TextView tvName;
-    ListView list;
+    private TextView tvDescription;
+    private TextView tvName;
+    private ListView list;
 
-    public static boolean updateItem = true;
+    //public static boolean updateItem = true;delete
 
-    static int customer_idfk;
-    public static String ncustomer_idfk ;
+    private static int customer_idfk;
+    private static String ncustomer_idfk ;
     public static String deleteFavorite ;
 
     //Creating ArrayList of type HashMap to store key & value pair
-    ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
+    private ArrayList<HashMap<String, String>> oslist = new ArrayList<>();
 
     //JSON Node Names
-    public static final String Key_ARRAY = "result";
-    public static final String KEY_ID = "favorite_id";
-    public static final String KEY_NAME = "carparkname";
-    public static final String KEY_DESCRIPTION = "description";
-    public static final String KEY_LATITUDE = "latitude";
-    public static final String KEY_LONGITUDE = "longitude";
+    private static final String Key_ARRAY = "result";
+    private static final String KEY_ID = "favorite_id";
+    private static final String KEY_NAME = "carparkname";
+    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_LATITUDE = "latitude";
+    private static final String KEY_LONGITUDE = "longitude";
 
     //Creating JSONArray
-    JSONArray capark = null;
+    private JSONArray capark = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class Fragment4 extends Fragment {
         private ProgressDialog pDialog;
 
         //Instantiate object jParser from class
-        JSONParser jParser = new JSONParser();
+        final JSONParser jParser = new JSONParser();
 
         //Variable for JSONObject
         private JSONObject json;

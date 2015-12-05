@@ -10,7 +10,7 @@ public class User {
     final String username;
     final String password;
     final String email;
-    int customer_id;
+    final int customer_id;
 
     //Constructor when user register
     public User (int customer_id,String name, String email,String username, String password){

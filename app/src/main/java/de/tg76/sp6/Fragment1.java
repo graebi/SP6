@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -28,13 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Fragment1 extends Fragment {
-
-    //Variable declaration
-    private Button buttonGet;
-    private ListView list;
-    private TextView id;
-    private TextView name;
-    private TextView spaces;
 
     private static int customer_idfk;
     private static int intCarparkID;
@@ -80,7 +72,7 @@ public class Fragment1 extends Fragment {
         new JSONParse().execute();
 
         //noinspection ConstantConditions  Method invocation 'getView().findViewById(R.id.buttonGet)' at line 69 may produce 'java.lang.NullPointerException'
-        buttonGet = (Button)getView().findViewById(R.id.buttonGet);
+        Button buttonGet = (Button) getView().findViewById(R.id.buttonGet);
         buttonGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +96,9 @@ public class Fragment1 extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.id)' at line 92 may produce 'java.lang.NullPointerException'
-            id = (TextView) getView().findViewById(R.id.id);
-            name = (TextView) getView().findViewById(R.id.name);
-            spaces = (TextView) getView().findViewById(R.id.spaces);
+            //TextView id = (TextView) getView().findViewById(R.id.id); delete
+           // TextView name = (TextView) getView().findViewById(R.id.name);delete
+            //TextView spaces = (TextView) getView().findViewById(R.id.spaces);delete
 
             //original place
             pDialog = new ProgressDialog(getActivity());
@@ -150,7 +142,7 @@ public class Fragment1 extends Fragment {
                     oslist.add(map);
 
                     //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.list)' at line 138 may produce 'java.lang.NullPointerException'
-                    list = (ListView) getView().findViewById(R.id.list);
+                    ListView list = (ListView) getView().findViewById(R.id.list);
 
                     ListAdapter adapter = new SimpleAdapter(getActivity(), oslist,
                             R.layout.list_view_layout,
@@ -161,13 +153,13 @@ public class Fragment1 extends Fragment {
                     list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                         @Override
                         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                            intCarparkID = position +1;
+                            intCarparkID = position + 1;
                             carparkID = Integer.toString(intCarparkID);
                             ncustomer_idfk = String.valueOf(customer_idfk);
                             Toast.makeText(getActivity(), "Storing carpark " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_LONG).show();
 
                             AddDeleteFavorite asyncT = new AddDeleteFavorite();
-                            AddDeleteFavorite.favoriteAdd =true;
+                            AddDeleteFavorite.favoriteAdd = true;
                             asyncT.execute();
 
                             return true;

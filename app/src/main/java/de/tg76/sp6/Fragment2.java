@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 public class Fragment2 extends Fragment {
 
     //Declare class
-    StoreLocationFragment mStoreLocationFragment;
-    RequestLocationFragment mRequestLocationFragment;
+    private StoreLocationFragment mStoreLocationFragment;
+    private RequestLocationFragment mRequestLocationFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class Fragment2 extends Fragment {
 
         Log.d("Testing", "Fragment2 FragmentTransaction");
         //Adding fragments onto Fragment2
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.store_location, mStoreLocationFragment);
         transaction.add(R.id.request_location, mRequestLocationFragment).commit();
 

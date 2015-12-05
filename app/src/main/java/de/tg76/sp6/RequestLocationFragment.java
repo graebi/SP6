@@ -42,10 +42,11 @@ public class RequestLocationFragment extends Fragment {
 
     //Local variable
     private UserLocalStore userLocalStore;
-    int customer_idfk;
-    String customer;
-    double latitude=0,longitude=0 ;
-    String description;
+    private int customer_idfk;
+    //String customer;delete
+    private double latitude=0;
+    private double longitude=0 ;
+    private String description;
 
     //UI elements
     private TextView tvLocationdetails;
@@ -57,6 +58,7 @@ public class RequestLocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        // return super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.activity_request_location, null);
+        //issue beheben Problem synopsis      Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element) (at line 59
     }
 
     @Override
@@ -100,7 +102,7 @@ public class RequestLocationFragment extends Fragment {
 
       //  String nlatitude = String.valueOf(latitude);
       //  String nlongitude = String.valueOf(longitude);
-        String ncustomer_idfk = String.valueOf(customer_idfk) ;
+      final String ncustomer_idfk = String.valueOf(customer_idfk) ;
 
         @Override
         //Run in the background when StoreUserDataAsyncTask starts - Accessing the server
@@ -137,7 +139,7 @@ public class RequestLocationFragment extends Fragment {
                     longitude = jObject.getDouble("longitude");
                     description = jObject.getString("description");
 
-                    //int customer_id = jObject.getInt();
+                    //int customer_id = jObject.getInt(); delete
                 }
 
             }catch (Exception e){
@@ -153,7 +155,7 @@ public class RequestLocationFragment extends Fragment {
         }
 
     }
-    public void setText(){
+    private void setText(){
         tvLocationdetails.setText(latitude + ", " + longitude);
         tvDescription.setText(description);
     }

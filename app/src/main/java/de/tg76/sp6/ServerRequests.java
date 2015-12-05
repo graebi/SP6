@@ -30,7 +30,7 @@ class ServerRequests {
     //Connection time in mill sec before disconnect
     private static final int CONNECTION_TIME = 1000*15;
     private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
-    int customer_id=0;
+    //int customer_id=0;delete
 
     //Constructor
     public ServerRequests(Context context){

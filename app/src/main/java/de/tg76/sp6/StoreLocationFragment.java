@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import org.apache.http.NameValuePair;
@@ -61,9 +60,9 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     private GoogleApiClient mGoogleApiClient;
 
     // boolean flag to toggle periodic location updates
-    private boolean mRequestingLocationUpdates = false;
+    //private boolean mRequestingLocationUpdates = false;delete
 
-    private LocationRequest mLocationRequest;
+   // private LocationRequest mLocationRequest;delete
 
     // Location updates intervals in sec
     private static int UPDATE_INTERVAL = 10000; // 10 sec
@@ -81,6 +80,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        // return super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.activity_store_location, null);
+        //Problem synopsis      Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element)
 
     }//End onCreateView
 

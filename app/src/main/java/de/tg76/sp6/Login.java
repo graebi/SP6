@@ -6,6 +6,7 @@ package de.tg76.sp6;
  */
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,14 +20,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etUsername;
     private EditText etPassword;
-    int customer_id;
+    private int customer_id;
     private UserLocalStore userLocalStore;
 
+    // flag for Internet connection status
+    Boolean isInternetPresent = false;
+    // Connection detector class
+    ConnectionDetector cd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login); //starts the activity_login.xml
+
+        // creating connection detector class instance
+        cd = new ConnectionDetector(getApplicationContext());
 
         //Assign ID to variable from activity_login.xml form
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -44,12 +52,29 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     //When bLogin or tvRegisterLink is clicked
     public void onClick(View v) {
+
+        // get Internet status
+        isInternetPresent = cd.isConnectingToInternet();
+
+        // check for Internet status
+        if (isInternetPresent) {
+            // Internet Connection is Present
+            // make HTTP requests
+            //showAlertDialog(Login.this, "Internet Connection",
+                    //"You have internet connection", true);
+        } else {
+            // Internet connection is not present
+            // Ask user to connect to Internet
+            showAlertDialog(Login.this, "No Internet Connection",
+                    "You don't have internet connection.", false);
+        }
+
+
         //Check ID value
         switch (v.getId()){
             //By click on button login
             case R.id.bLogin:
                 //Update local storage user data
-
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
@@ -94,5 +119,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
 }
+
+
 
