@@ -15,10 +15,6 @@ import android.view.ViewGroup;
 
 public class Fragment2 extends Fragment {
 
-    //Declare class
-    private StoreLocationFragment mStoreLocationFragment;
-    private RequestLocationFragment mRequestLocationFragment;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_fragment2, container, false);
@@ -32,8 +28,8 @@ public class Fragment2 extends Fragment {
 
         Log.d("Testing", "Fragment2 onActivityCreated");
         //Initiate class
-        mStoreLocationFragment = new StoreLocationFragment();
-        mRequestLocationFragment = new RequestLocationFragment();
+        StoreLocationFragment mStoreLocationFragment = new StoreLocationFragment();
+        RequestLocationFragment mRequestLocationFragment = new RequestLocationFragment();
 
         Log.d("Testing", "Fragment2 FragmentTransaction");
         //Adding fragments onto Fragment2

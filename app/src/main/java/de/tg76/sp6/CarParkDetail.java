@@ -42,27 +42,13 @@ public class CarParkDetail extends AppCompatActivity {
     private static final int CONNECTION_TIME = 1000 * 15;
     private static final String SERVER_ADDRESS = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/";
 
-    String cparkID;
+    private String cparkID;
 
-    /*  //JSON Node Names
-      private static final String Key_ARRAY = "result";
-      private static final String KEY_ID = "CARPARK_ID";
-      private static final String KEY_NAME = "CARPARKNAME";
-      private static final String KEY_STREET = "STREET";
-      private static final String KEY_PHONE = "PHONE";
-      private static final String KEY_TOTALSPACE = "TOTALSPACE";
-      private static final String KEY_SPACES = "SPACE";
-      private static final String KEY_RATES = "RATES";
-      private static final String KEY_LATITUDE = "LATITUDE";
-      private static final String KEY_LONGITUDE = "LONGITUDE";
-  */
-    private int CARPARK_ID;
     private String CARPARKNAME;
     private double LATITUDE;
     private double LONGITUDE;
     private String SPACE;
     private String TOTALSPACE;
-    private String DESCRIPTION;
     private String STREET;
     private String PHONE;
     private String RATES;
@@ -106,7 +92,7 @@ public class CarParkDetail extends AppCompatActivity {
 
         //Initializing JSONArray
         Fragment1 getCarParkID = new Fragment1();
-        cparkID = getCarParkID.carparkID;
+        cparkID = Fragment1.carparkID;
         AsyncT asyncT = new AsyncT();
         asyncT.execute();
 
@@ -147,13 +133,13 @@ public class CarParkDetail extends AppCompatActivity {
 
                     Toast.makeText(CarParkDetail.this, "No object retrieved from database", Toast.LENGTH_LONG).show();
                 } else {
-                    CARPARK_ID = jObject.getInt("CARPARK_ID");
+                    int CARPARK_ID = jObject.getInt("CARPARK_ID");
                     CARPARKNAME = jObject.getString("CARPARKNAME");
                     LATITUDE = jObject.getDouble("LATITUDE");
                     LONGITUDE = jObject.getDouble("LONGITUDE");
                     SPACE = jObject.getString("SPACE");
                     TOTALSPACE = jObject.getString("TOTALSPACE");
-                    DESCRIPTION = jObject.getString("DESCRIPTION");
+                    String DESCRIPTION = jObject.getString("DESCRIPTION");
                     STREET = jObject.getString("STREET");
                     PHONE = jObject.getString("PHONE");
                     RATES = jObject.getString("RATES");

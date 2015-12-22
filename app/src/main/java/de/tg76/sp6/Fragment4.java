@@ -32,18 +32,10 @@ import java.util.HashMap;
 import static android.widget.AdapterView.*;
 
 public class Fragment4 extends Fragment {
-    // Getting JSON from URL
-    private final String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
-
-    //Variable declaration
-    private TextView tvDescription;
-    private TextView tvName;
-    private ListView list;
 
     //public static boolean updateItem = true;delete
 
     private static int customer_idfk;
-    private static String ncustomer_idfk ;
     public static String deleteFavorite ;
 
     //Creating ArrayList of type HashMap to store key & value pair
@@ -56,9 +48,6 @@ public class Fragment4 extends Fragment {
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_LATITUDE = "latitude";
     private static final String KEY_LONGITUDE = "longitude";
-
-    //Creating JSONArray
-    private JSONArray capark = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,8 +84,8 @@ public class Fragment4 extends Fragment {
             //list_view_favorite
             Log.d("Fragment4", "onPreExecute");
             //noinspection ConstantConditions
-            tvName = (TextView) getView().findViewById(R.id.tvName);
-            tvDescription = (TextView) getView().findViewById(R.id.tvDescription);
+            TextView tvName = (TextView) getView().findViewById(R.id.tvName);
+            TextView tvDescription = (TextView) getView().findViewById(R.id.tvDescription);
 
             //original place
             pDialog = new ProgressDialog(getActivity());
@@ -111,10 +100,11 @@ public class Fragment4 extends Fragment {
         protected JSONObject doInBackground(String... args) {
 
             //Change int to String
-            ncustomer_idfk = String.valueOf(customer_idfk);
+            String ncustomer_idfk = String.valueOf(customer_idfk);
 
             //Calling JSONParser and retrieve object
-            json = jParser.getJSONFromUrl(url,ncustomer_idfk);
+            String url = "http://ec2-52-17-188-91.eu-west-1.compute.amazonaws.com/FetchFavorite.php";
+            json = jParser.getJSONFromUrl(url, ncustomer_idfk);
 
             return json;
         }//End doInBackground
@@ -125,7 +115,7 @@ public class Fragment4 extends Fragment {
             pDialog.dismiss();
             try {
                 // Json objects in array
-                capark = json.getJSONArray(Key_ARRAY);
+                JSONArray capark = json.getJSONArray(Key_ARRAY);
 
                 for (int i = 0; i < capark.length(); i++) {
 
@@ -149,7 +139,7 @@ public class Fragment4 extends Fragment {
                     oslist.add(map);
 
                     //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.list)' at line 138 may produce 'java.lang.NullPointerException'
-                    list = (ListView) getView().findViewById(R.id.list);
+                    ListView list = (ListView) getView().findViewById(R.id.list);
 
                     ListAdapter adapter = new SimpleAdapter(getActivity(), oslist,
                             R.layout.list_view_favorite_layout,
@@ -166,7 +156,7 @@ public class Fragment4 extends Fragment {
 
                             //Calling class to delete
                             AddDeleteFavorite asyncT = new AddDeleteFavorite();
-                            AddDeleteFavorite.favoriteAdd =false;
+                            AddDeleteFavorite.favoriteAdd = false;
                             asyncT.execute();
 
                             //Starts activity

@@ -6,6 +6,7 @@ package de.tg76.sp6;
  */
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -57,6 +58,7 @@ public class RequestLocationFragment extends Fragment {
     private TextView tvDescription;
 
 
+    @SuppressLint("InflateParams")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

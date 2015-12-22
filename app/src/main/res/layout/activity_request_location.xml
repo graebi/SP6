@@ -14,8 +14,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/displaylocation"
         android:layout_marginTop="35dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_gravity="center_horizontal"
         android:elegantTextHeight="true" />
 
@@ -35,10 +33,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:textSize="16dp"
-        android:layout_below="@+id/btnGetLocation"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvDescription"
@@ -46,10 +41,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:textSize="16dp"
-        android:layout_below="@+id/tvLocationdetails"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnNavigate"

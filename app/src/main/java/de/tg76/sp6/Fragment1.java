@@ -51,9 +51,6 @@ public class Fragment1 extends Fragment {
     private static final String KEY_NAME = "CARPARKNAME";
     private static final String KEY_SPACES = "SPACE";
 
-    //Creating JSONArray
-    private JSONArray capark = null;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_fragment1, container, false);
@@ -74,7 +71,7 @@ public class Fragment1 extends Fragment {
 
         //noinspection ConstantConditions  Method invocation 'getView().findViewById(R.id.buttonGet)'
         // at line 69 may produce 'java.lang.NullPointerException'
-        Button buttonGet = (Button) getView().findViewById(R.id.buttonGet);
+        @SuppressWarnings("ConstantConditions") Button buttonGet = (Button) getView().findViewById(R.id.buttonGet);
         buttonGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +125,7 @@ public class Fragment1 extends Fragment {
             pDialog.dismiss();
             try {
                 // Json objects in array - object 0 = (CARPARK_ID:1, CARPARKNAME:Parnell, SPACE:184)
-                capark = json.getJSONArray(Key_ARRAY);
+                JSONArray capark = json.getJSONArray(Key_ARRAY);
 
                 for (int i = 0; i < capark.length(); i++) {
 
@@ -149,7 +146,7 @@ public class Fragment1 extends Fragment {
 
                     //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.list)' at line
                     // 138 may produce 'java.lang.NullPointerException'
-                    ListView list = (ListView) getView().findViewById(R.id.list);
+                    @SuppressWarnings("ConstantConditions") ListView list = (ListView) getView().findViewById(R.id.list);
 
                     ListAdapter adapter = new SimpleAdapter(getActivity(), oslist,
                             R.layout.list_view_layout,

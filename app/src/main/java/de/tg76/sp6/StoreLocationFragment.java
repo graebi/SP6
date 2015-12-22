@@ -6,6 +6,7 @@ package de.tg76.sp6;
  */
 
 
+import android.annotation.SuppressLint;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -81,6 +82,7 @@ public class StoreLocationFragment extends Fragment implements GoogleApiClient.C
     private UserLocalStore userLocalStore;
 
 
+    @SuppressLint("InflateParams")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
