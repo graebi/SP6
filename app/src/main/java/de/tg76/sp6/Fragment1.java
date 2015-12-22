@@ -2,7 +2,7 @@ package de.tg76.sp6;
 
 /*
  * Fragment1 - Displays live car park data on fragment 1 
- * Thorsten Graebner
+ * Thorsten Graebner D11123994
  */
 
 import android.app.ProgressDialog;
@@ -72,7 +72,8 @@ public class Fragment1 extends Fragment {
         oslist = new ArrayList<>();
         new JSONParse().execute();
 
-        //noinspection ConstantConditions  Method invocation 'getView().findViewById(R.id.buttonGet)' at line 69 may produce 'java.lang.NullPointerException'
+        //noinspection ConstantConditions  Method invocation 'getView().findViewById(R.id.buttonGet)'
+        // at line 69 may produce 'java.lang.NullPointerException'
         Button buttonGet = (Button) getView().findViewById(R.id.buttonGet);
         buttonGet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +100,8 @@ public class Fragment1 extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.id)' at line 92 may produce 'java.lang.NullPointerException'
+            //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.id)'
+            // at line 92 may produce 'java.lang.NullPointerException'
             //TextView id = (TextView) getView().findViewById(R.id.id); delete
            // TextView name = (TextView) getView().findViewById(R.id.name);delete
             //TextView spaces = (TextView) getView().findViewById(R.id.spaces);delete
@@ -145,7 +147,8 @@ public class Fragment1 extends Fragment {
 
                     oslist.add(map);
 
-                    //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.list)' at line 138 may produce 'java.lang.NullPointerException'
+                    //noinspection ConstantConditions Method invocation 'getView().findViewById(R.id.list)' at line
+                    // 138 may produce 'java.lang.NullPointerException'
                     ListView list = (ListView) getView().findViewById(R.id.list);
 
                     ListAdapter adapter = new SimpleAdapter(getActivity(), oslist,
@@ -174,6 +177,9 @@ public class Fragment1 extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Toast.makeText(getActivity(), "You Clicked at " + oslist.get(+position).get("CARPARKNAME"), Toast.LENGTH_SHORT).show();
+                            intCarparkID = position + 1;
+                            carparkID = Integer.toString(intCarparkID);
+                            startActivity(new Intent(getActivity(), CarParkDetail.class));
                         }//onItemClick
 
                     });//setOnItemClickListener

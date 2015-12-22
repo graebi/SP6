@@ -1,5 +1,11 @@
 package de.tg76.sp6;
 
+/*
+ * Retrieve stored location and description
+ * Thorsten Graebner D11123994
+ */
+
+
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;

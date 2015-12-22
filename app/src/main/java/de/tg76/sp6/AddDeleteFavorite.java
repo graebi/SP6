@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/*
+ * Retrieves car park information
+ * Thorsten Graebner D11123994
+ */
+
 import android.os.AsyncTask;
 
 import org.apache.http.NameValuePair;

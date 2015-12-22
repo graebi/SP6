@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/**
+ * Thorsten Graebner D11123994
+ * This class creates the tab layout design of the app
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -68,7 +73,7 @@ public class SmartParking extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        //Logout user function in Menue
+        //Logout user function in Menu
         int id = item.getItemId();
         Log.d("Testing", "SmartParking onOptionsItemSelected");//delete this
         userLocalStore.clearUserData();

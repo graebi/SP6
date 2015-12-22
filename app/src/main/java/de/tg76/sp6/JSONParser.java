@@ -1,5 +1,9 @@
 package de.tg76.sp6;
 
+/*
+ * Connects to remote server and receive the carpark array
+ * Thorsten Graebner D11123994
+ */
 
 import android.util.Log;
 
@@ -118,5 +122,4 @@ public class JSONParser {
         // return JSON String
         return jObj;
     }
-
 }

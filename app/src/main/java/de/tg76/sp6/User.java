@@ -2,6 +2,7 @@ package de.tg76.sp6;
 
 /**
  * User class - Creates user and holds attributes of user
+ * Thorsten Graebner D11123994
  */
 public class User {
 

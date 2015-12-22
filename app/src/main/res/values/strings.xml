@@ -14,4 +14,18 @@
     <string name="lbl_you_are_at">coordiante</string>
     <string name="displaylocation">Display Location</string>
     <string name="btn_display_location">Display Location</string>
+    <string name="title_activity_car_park_detail">CarParkDetail</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="CarParkNameDetail">Carpark name:</string>
+    <string name="StreetDetail">Street:</string>
+    <string name="PhoneDetail">Phone:</string>
+    <string name="TotalSpaceDetail">Total space:</string>
+    <string name="SpaceDetail">Space:</string>
+    <string name="RatesDetail">Hourly rates:</string>
+    <string name="NavigateDetail">Navigate</string>
+    <string name="test">Car Park Detail</string>
+    <string name="Longitude">Longitude:</string>
+    <string name="Latitude">Latitude:</string>
 </resources>

@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/**
+ * Java class to register user and retrieve stored user data
+ * Thorsten Graebner D11123994
+ */
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;

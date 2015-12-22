@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/*
+ * Displays and deletes favorite carpark
+ * Thorsten Graebner D11123994
+ */
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -164,6 +169,7 @@ public class Fragment4 extends Fragment {
                             AddDeleteFavorite.favoriteAdd =false;
                             asyncT.execute();
 
+                            //Starts activity
                             Intent intent = getActivity().getIntent();
                             getActivity().finish();
                             startActivity(intent);

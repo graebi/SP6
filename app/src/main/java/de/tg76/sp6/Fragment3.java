@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/*
+ * Displays pin on Google Maps as carparks
+ * Thorsten Graebner D11123994
+ */
+
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;

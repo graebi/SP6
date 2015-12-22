@@ -1,5 +1,11 @@
 package de.tg76.sp6;
 
+/*
+ * Retrieve car park object form JSON array
+ * Thorsten Graebner D11123994
+ */
+
+
 import android.util.Log;
 
 import org.json.JSONArray;

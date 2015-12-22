@@ -1,7 +1,7 @@
 package de.tg76.sp6;
 
 /*
- * Created by Thorsten on 04/10/2015.
+ * Thorsten Graebner D11123994
  * Login class - Loges user in or redirect to Registration activity
  */
 

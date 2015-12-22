@@ -1,8 +1,8 @@
 package de.tg76.sp6;
 
 /**
- * Created by Thorsten on 04/10/2015.
- * This class muss ich noch reinschreiben
+ * Java class to register or login user
+ * Thorsten Graebner D11123994
  */
 
 import android.content.Intent;

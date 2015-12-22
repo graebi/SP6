@@ -1,9 +1,13 @@
 package de.tg76.sp6;
-/**
- * Created by adm_toto on 15/11/2015.
- * work on it
+
+/*
+ * Retrieve stored location, navigate to stored location
+ * Thorsten Graebner D11123994
  */
 
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -71,6 +75,7 @@ public class RequestLocationFragment extends Fragment {
         tvLocationdetails = (TextView) getActivity().findViewById(R.id.tvLocationdetails);
         tvDescription = (TextView) getActivity().findViewById(R.id.tvDescription);
         Button btnGetLocation = (Button) getActivity().findViewById(R.id.btnGetLocation);
+        Button btnNavigate = (Button) getActivity().findViewById(R.id.btnNavigate);
 
         // Show location button click listener
         btnGetLocation.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +87,15 @@ public class RequestLocationFragment extends Fragment {
                 asyncT.execute();
 
             }//End onClick
-        });
+        });//End  btnGetLocation.setOnClickListener
+
+        btnNavigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateTo();
+            }
+        });//End btnNavigate.setOnClickListener
+
     }//End onActivityCreated
 
     //Function to display user details on activity_main
@@ -155,8 +168,18 @@ public class RequestLocationFragment extends Fragment {
         }
 
     }
+    //Display co-ordinates on fragment
     private void setText(){
         tvLocationdetails.setText(latitude + ", " + longitude);
         tvDescription.setText(description);
     }
+
+    //Navigate to stored location
+    private void navigateTo(){
+        String url = "http://maps.google.com/maps?f=d&daddr=" + latitude + "," + longitude + "&dirflg=d&layer=t";
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(url));
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        startActivity(intent);
+    }
+
 }

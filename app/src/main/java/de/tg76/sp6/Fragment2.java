@@ -1,5 +1,10 @@
 package de.tg76.sp6;
 
+/*
+ * Store location (GPS), display GPS and navigate to location
+ * Thorsten Graebner D11123994
+ */
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -37,7 +42,6 @@ public class Fragment2 extends Fragment {
         transaction.add(R.id.request_location, mRequestLocationFragment).commit();
 
     }
-
 
     @Override
     public void onDetach() {
